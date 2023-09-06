@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const userModel = require('../models/user.models')
 
 const registerHandler = async (req, res) => {
@@ -45,10 +46,10 @@ const loginHandler = async (req, res) => {
         }
 
         // Compare the provided password with the stored hashed password
-        // const isPasswordValid = await bcrypt.compare(password, user.password);
-        const userpassword = user.password;
-        // console.log("48", userpassword)
-        if (password !== userpassword) {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        // const userpassword = user.password;
+        // console.log("48", isPasswordValid)
+        if (!isPasswordValid) {
             return res.status(401).json({
                 success: false,
                 message: 'Wrong or Invalid Password',
