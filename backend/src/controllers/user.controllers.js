@@ -1,12 +1,14 @@
 const bcrypt = require('bcrypt');
 const userModel = require('../models/user.models')
+const jwt = require('jsonwebtoken');
+require("dotenv").config();
+const jwtSecretKey = process.env.MySecretkey;
+
 
 const registerHandler = async (req, res) => {
     try {
-        // console.log(req.body)
         const { name, email, password } = req.body
 
-        // Check if the email already exists in the database
         const existingUser = await userModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({
@@ -15,14 +17,16 @@ const registerHandler = async (req, res) => {
             });
         }
 
-        // If the email doesn't exist, proceed with registration
-        const registrationData = new userModel({ name: name, email: email, password: password })
+        const registrationData = new userModel({ name, email, password })
         await registrationData.save()
+
+        const token = jwt.sign({ RegId: registrationData._id }, jwtSecretKey, { expiresIn: '1h' });
 
         res.status(201).json({
             success: true,
             message: 'Registration successful',
-            payload: registrationData,
+            registrationData: registrationData,
+            token: token,
         });
     } catch (error) {
         console.log(error)
@@ -30,14 +34,14 @@ const registerHandler = async (req, res) => {
     }
 }
 
+
+
+
 const loginHandler = async (req, res) => {
     try {
         const { email, password } = req.body;
-        // console.log(req.body)
 
-        // Check if the user with the provided email exists in the database
         const user = await userModel.findOne({ email });
-        // console.log("38", user)
         if (!user) {
             return res.status(401).json({
                 success: false,
@@ -45,10 +49,8 @@ const loginHandler = async (req, res) => {
             });
         }
 
-        // Compare the provided password with the stored hashed password
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        // const userpassword = user.password;
-        // console.log("48", isPasswordValid)
+
         if (!isPasswordValid) {
             return res.status(401).json({
                 success: false,
@@ -56,14 +58,13 @@ const loginHandler = async (req, res) => {
             });
         }
 
-        
-        // If both email and password are valid, consider the user logged in
-        // You can generate and return a JWT (JSON Web Token) here for authentication purposes
+        const token = jwt.sign({ userId: user._id }, jwtSecretKey, { expiresIn: '1h' });
 
         res.status(200).json({
             success: true,
-            message: 'Login successful',
-            payload: user, // You can send user data here if needed
+            message: 'Authentication successful',
+            loginData: user,
+            token: token,
         });
     } catch (error) {
         console.log(error)
