@@ -1,0 +1,75 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle();">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <h1>Blogging Website</h1>
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="large-button mx-3">
+                    <span class="material-icons icon">account_circle</span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>account_circle</mat-icon>
+                        <span>Username</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened="true" mode="side" position="start">
+        <mat-nav-list>
+            <mat-list-item >
+                <button  color="primary" routerLink="" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+            </mat-list-item>
+
+            <mat-list-item >
+                <button  color="primary" routerLink="about" mat-button><mat-icon>account_circle</mat-icon> About</button>
+            </mat-list-item>
+
+            <mat-list-item >
+                <button  color="primary" routerLink="contact" mat-button><mat-icon>question_answer</mat-icon> Contact</button>
+            </mat-list-item>
+
+            <mat-list-item >
+                <button  color="primary" routerLink="careers" mat-button><mat-icon>verified_user</mat-icon> Careers</button>
+            </mat-list-item>
+
+            <mat-list-item>
+                <button [matMenuTriggerFor]="options"  color="primary" mat-button><mat-icon>sort</mat-icon> Blog</button>
+                <mat-menu #options="matMenu">
+                  <button  color="accent" routerLink="blog/create"   mat-menu-item><mat-icon>beenhere</mat-icon>Create Blog</button>
+                  <button routerLink="blog/update"  mat-menu-item><mat-icon>update </mat-icon>Update Blog</button>
+                  <button routerLink="blog/history"  mat-menu-item><mat-icon>history_toggle_off</mat-icon> Blog History</button>
+              </mat-menu>
+            </mat-list-item>
+
+            <mat-list-item >
+                <button  color="primary" routerLink="auth/login" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
+            </mat-list-item>
+
+            <mat-list-item >
+                <button  color="primary" routerLink="auth/signup" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
+            </mat-list-item>
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="text-center min-vh-100">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
