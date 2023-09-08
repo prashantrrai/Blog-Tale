@@ -1,7 +1,8 @@
-/* Careers Page */
+/* Base styles for all screen sizes */
+
 .careers {
     background-color: #f9f9f9;
-    padding: 50px 0;
+    padding: 50px 10px; /* Add padding to the sides for all screen sizes */
     text-align: center;
 }
 
@@ -27,6 +28,7 @@
 }
 
 /* Job Listings Section */
+
 .job-listings h2 {
     font-size: 24px;
     margin-top: 30px;
@@ -71,4 +73,28 @@
 
 .apply-button:hover {
     background-color: #0077aa;
+}
+
+/* Media queries for responsive design */
+
+/* Tablet (768px) */
+@media (max-width: 768px) {
+    .careers {
+        padding: 20px 0;
+    }
+
+    .careers-card {
+        max-width: 600px; /* Adjust max-width for better tablet layout */
+    }
+}
+
+/* Mobile (480px) */
+@media (max-width: 480px) {
+    .careers {
+        padding: 20px 0; /* Revert padding for mobile view */
+    }
+
+    .careers-card {
+        max-width: 90%; /* Adjust max-width for better mobile layout */
+    }
 }

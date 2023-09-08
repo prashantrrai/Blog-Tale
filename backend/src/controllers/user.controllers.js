@@ -7,7 +7,8 @@ const jwtSecretKey = process.env.MySecretkey;
 
 const registerHandler = async (req, res) => {
     try {
-        const { name, email, password } = req.body
+        const { fname, lname, email, password } = req.body
+        console.log(req.body)
 
         const existingUser = await userModel.findOne({ email });
         if (existingUser) {
@@ -17,7 +18,7 @@ const registerHandler = async (req, res) => {
             });
         }
 
-        const registrationData = new userModel({ name, email, password })
+        const registrationData = new userModel({ fname, lname, email, password })
         await registrationData.save()
 
         const token = jwt.sign({ RegId: registrationData._id }, jwtSecretKey, { expiresIn: '1h' });
@@ -50,7 +51,6 @@ const loginHandler = async (req, res) => {
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
-
         if (!isPasswordValid) {
             return res.status(401).json({
                 success: false,

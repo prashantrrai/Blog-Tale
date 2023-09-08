@@ -44,3 +44,14 @@
     font-weight: bold;
     padding: 5px 10px;
   }
+
+  #login{
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+  #login a{
+    color: #292354;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+  }

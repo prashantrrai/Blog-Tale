@@ -44,3 +44,14 @@
   font-weight: bold;
   padding: 5px 10px;
 }
+
+#forgotDiv{
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+#forgotDiv a{
+  color: #292354;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}

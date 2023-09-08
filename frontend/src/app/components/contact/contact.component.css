@@ -83,3 +83,35 @@
     line-height: 1.6;
     margin-bottom: 10px;
 }
+
+/* Media Queries for Padding */
+@media (max-width: 767px) {
+    /* Mobile view */
+    .contact {
+        background-color: #f9f9f9;
+        padding: 10px;
+        text-align: center;
+    }
+    .contact-card {
+        padding: 20px; /* Adjust padding for mobile screens */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Tablet view */
+    .contact {
+        background-color: #f9f9f9;
+        padding: 10px;
+        text-align: center;
+    }
+    .contact-card {
+        padding: 30px; /* Adjust padding for tablet screens */
+    }
+}
+
+@media (min-width: 992px) {
+    /* Large screen view */
+    .contact-card {
+        padding: 40px; /* Adjust padding for large screens */
+    }
+}

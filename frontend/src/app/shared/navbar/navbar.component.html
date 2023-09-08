@@ -14,8 +14,13 @@
                         <mat-icon>account_circle</mat-icon>
                         <span>Username</span>
                     </button>
-                    <button mat-menu-item>
+
+                    <button mat-menu-item *ngIf="!_auth.loggedIn">
                         <mat-icon>exit_to_app</mat-icon>
+                        <span>Login</span>
+                    </button>
+                    <button mat-menu-item (click)="onLogout()" *ngIf="_auth.loggedIn">
+                        <mat-icon>power_settings_new</mat-icon>
                         <span>Logout</span>
                     </button>
                 </mat-menu>
@@ -56,12 +61,12 @@
               </mat-menu>
             </mat-list-item>
 
-            <mat-list-item *ngIf="loggedIn">
-                <button  color="primary" routerLink="auth/login" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
+            <mat-list-item>
+                <button  color="primary" routerLink="auth/login" *ngIf="!_auth.loggedIn" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
             </mat-list-item>
 
-            <mat-list-item *ngIf="!loggedIn">
-                <button  color="primary" (click)="logout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
+            <mat-list-item >
+                <button  color="primary" routerLink="auth/signup" *ngIf="_auth.loggedIn" (click)="onLogout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
             </mat-list-item>
 
         </mat-nav-list>
