@@ -6,7 +6,7 @@ import { AuthGuardService } from './core/auth-guard.service';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
   },
   {

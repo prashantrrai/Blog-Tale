@@ -1,1 +1,59 @@
-<p>home works!</p>
+
+<c-carousel [dark]="true" [wrap]="false">
+    <c-carousel-indicators></c-carousel-indicators>
+    <c-carousel-inner>
+      <c-carousel-item *ngFor="let slide of slides; index as i;">
+        <img
+          [src]="slide.src"
+          alt="{{slide.title}}"
+          class="d-block w-100"
+          loading="lazy"
+        />
+        <!-- <c-carousel-caption class="d-none d-md-block">
+          <h3>{{slide.title}}</h3>
+          <p>{{slide.subtitle}}</p>
+        </c-carousel-caption> -->
+      </c-carousel-item>
+    </c-carousel-inner>
+    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+  </c-carousel>
+
+
+<div class="blog-cards-container">
+    <div class="blog-card">
+        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
+        <div class="blog-content">
+            <h2 class="blog-title">Blog Post Title 1</h2>
+            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </div>
+    <div class="blog-card">
+        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
+        <div class="blog-content">
+            <h2 class="blog-title">Blog Post Title 1</h2>
+            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </div>
+    <div class="blog-card">
+        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
+        <div class="blog-content">
+            <h2 class="blog-title">Blog Post Title 1</h2>
+            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </div>
+    <div class="blog-card">
+        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
+        <div class="blog-content">
+            <h2 class="blog-title">Blog Post Title 1</h2>
+            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </div>
+
+
+    <!-- Repeat the above card structure for additional blog post cards -->
+</div>

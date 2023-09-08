@@ -29,22 +29,22 @@
 
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav opened="true" mode="side" position="start">
+    <mat-sidenav #sidenav opened="false" mode="side" position="start">
         <mat-nav-list>
             <mat-list-item >
                 <button  color="primary" routerLink="" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
             </mat-list-item>
 
             <mat-list-item >
-                <button  color="primary" routerLink="about" mat-button><mat-icon>account_circle</mat-icon> About</button>
+                <button  color="primary" routerLink="dashboard/about" mat-button><mat-icon>account_circle</mat-icon> About</button>
             </mat-list-item>
 
             <mat-list-item >
-                <button  color="primary" routerLink="contact" mat-button><mat-icon>question_answer</mat-icon> Contact</button>
+                <button  color="primary" routerLink="dashboard/contact" mat-button><mat-icon>question_answer</mat-icon> Contact</button>
             </mat-list-item>
 
             <mat-list-item >
-                <button  color="primary" routerLink="careers" mat-button><mat-icon>verified_user</mat-icon> Careers</button>
+                <button  color="primary" routerLink="dashboard/careers" mat-button><mat-icon>verified_user</mat-icon> Careers</button>
             </mat-list-item>
 
             <mat-list-item>
@@ -56,15 +56,20 @@
               </mat-menu>
             </mat-list-item>
 
-            <mat-list-item >
+            <mat-list-item *ngIf="loggedIn">
                 <button  color="primary" routerLink="auth/login" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
             </mat-list-item>
 
-            <mat-list-item >
-                <button  color="primary" routerLink="auth/signup" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
+            <mat-list-item *ngIf="!loggedIn">
+                <button  color="primary" (click)="logout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
             </mat-list-item>
 
         </mat-nav-list>
+        <!-- <div class="d-flex flex-column align-items-center justify-content-end" style="height: 45%;">
+            <div class="text-primary">
+                Version 1.0.1
+            </div>
+         </div> -->
     </mat-sidenav>
 
     <mat-sidenav-content>
