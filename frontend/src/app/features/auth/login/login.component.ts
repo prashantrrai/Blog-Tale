@@ -32,18 +32,16 @@ export class LoginComponent implements OnInit {
 
       this._auth.loginUser({ email, password }).subscribe({
         next: (res: any) => {
+          this._auth.setUserData(res);
 
           const token = res.token;
           sessionStorage.setItem('token', token);
           localStorage.setItem('token', res.token);
 
-
           this.loginForm.reset();
           this.toastr.success(res.message, 'Success');
           this._router.navigate(['/']);
 
-
-          this._auth.setLoggedInStatus(true);
         },
         error: (error) => {
           console.log(error);
@@ -54,4 +52,5 @@ export class LoginComponent implements OnInit {
       this.toastr.warning('All Fields are required.');
     }
   }
+
 }

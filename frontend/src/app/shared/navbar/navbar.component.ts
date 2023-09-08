@@ -9,21 +9,49 @@ import { AuthenticationService } from 'src/app/core/authentication.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  // loggedIn: boolean = false;
+  userName1: string='';
+  userName2: string='';
+  userName3: string='';
+  loggedIn: boolean = true;
   constructor(private router: Router, private toastr: ToastrService, public _auth: AuthenticationService) {}
 
-  isUserLoggedIn(): boolean {
-    return this._auth.loggedIn;
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    if (token) {
+      this.loggedIn = true;
+
+      this._auth.getUserData(token).subscribe(
+        (userData) => {
+          this.userName1 = userData.userdata[0].fname;
+          this.userName2 = userData.userdata[0].lname;
+        },
+        (error) => {
+          console.error('Error fetching user data:', error);
+        }
+      );
+    }else{
+      this.loggedIn = false;
+      this.userName3 = "Username"
+
+    }
+
+
+    this._auth.userDataUpdated.subscribe((userData) => {
+      if (userData) {
+        this.userName1 = userData.loginData.fname;
+        this.userName2 = userData.loginData.lname;
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
   }
 
   onLogout() {
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
-
-    this._auth.setLoggedInStatus(false);
-
+    this._auth.logout();
     this.toastr.info('Logged Out Successfully', 'Info');
     this.router.navigate(['/auth/login']);
-    // this.loggedIn = true;
+    this.userName3 = "Username"
   }
 }

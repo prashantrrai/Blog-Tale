@@ -73,4 +73,20 @@ const loginHandler = async (req, res) => {
 }
 
 
-module.exports = { registerHandler, loginHandler };
+const userdataHandler = async (req, res) => {
+    try {
+
+        const userdata = await userModel.find({_id: req.userId});
+
+        res.status(201).json({
+            success: true,
+            userdata: userdata,
+            token_id: req.userId,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ success: false, error: error.message })
+    }
+}
+
+module.exports = { registerHandler, loginHandler, userdataHandler };

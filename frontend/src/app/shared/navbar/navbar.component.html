@@ -12,14 +12,15 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item>
                         <mat-icon>account_circle</mat-icon>
-                        <span>Username</span>
+                        <span *ngIf="loggedIn">{{userName1+" "+userName2}}</span>
+                        <span *ngIf="!loggedIn">{{userName3}}</span>
                     </button>
 
-                    <button mat-menu-item *ngIf="!_auth.loggedIn">
+                    <button mat-menu-item *ngIf="!loggedIn" routerLink="auth/login">
                         <mat-icon>exit_to_app</mat-icon>
                         <span>Login</span>
                     </button>
-                    <button mat-menu-item (click)="onLogout()" *ngIf="_auth.loggedIn">
+                    <button mat-menu-item (click)="onLogout()" *ngIf="loggedIn" routerLink="auth/login">
                         <mat-icon>power_settings_new</mat-icon>
                         <span>Logout</span>
                     </button>
@@ -62,19 +63,15 @@
             </mat-list-item>
 
             <mat-list-item>
-                <button  color="primary" routerLink="auth/login" *ngIf="!_auth.loggedIn" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
+                <button  color="primary" routerLink="auth/login" *ngIf="!loggedIn" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
             </mat-list-item>
 
             <mat-list-item >
-                <button  color="primary" routerLink="auth/signup" *ngIf="_auth.loggedIn" (click)="onLogout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
+                <button  color="primary" routerLink="auth/signup" *ngIf="loggedIn" (click)="onLogout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
             </mat-list-item>
 
         </mat-nav-list>
-        <!-- <div class="d-flex flex-column align-items-center justify-content-end" style="height: 45%;">
-            <div class="text-primary">
-                Version 1.0.1
-            </div>
-         </div> -->
+
     </mat-sidenav>
 
     <mat-sidenav-content>

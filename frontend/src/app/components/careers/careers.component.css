@@ -84,17 +84,17 @@
     }
 
     .careers-card {
-        max-width: 600px; /* Adjust max-width for better tablet layout */
+        max-width: 600px;
     }
 }
 
 /* Mobile (480px) */
 @media (max-width: 480px) {
     .careers {
-        padding: 20px 0; /* Revert padding for mobile view */
+        padding: 20px 0;
     }
 
     .careers-card {
-        max-width: 90%; /* Adjust max-width for better mobile layout */
+        max-width: 90%;
     }
 }
