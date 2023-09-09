@@ -21,39 +21,13 @@
 
 
 <div class="blog-cards-container">
-    <div class="blog-card">
+    <div class="blog-card" *ngFor="let blog of blogArray">
         <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
+        <!-- <img class="card-img-top" src="{{country.flagImage}}" alt="Card image cap" style="width: 200px; height: 300px;" /> -->
         <div class="blog-content">
-            <h2 class="blog-title">Blog Post Title 1</h2>
-            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
-            <a href="#" class="read-more">Read More</a>
+            <h2 class="blog-title">{{blog.title}}</h2>
+            <p class="blog-description">{{blog.description}}</p>
+            <a href="#" class="read-more" routerLink="auth/login">Read More</a>
         </div>
     </div>
-    <div class="blog-card">
-        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
-        <div class="blog-content">
-            <h2 class="blog-title">Blog Post Title 1</h2>
-            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
-            <a href="#" class="read-more">Read More</a>
-        </div>
-    </div>
-    <div class="blog-card">
-        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
-        <div class="blog-content">
-            <h2 class="blog-title">Blog Post Title 1</h2>
-            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
-            <a href="#" class="read-more">Read More</a>
-        </div>
-    </div>
-    <div class="blog-card">
-        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
-        <div class="blog-content">
-            <h2 class="blog-title">Blog Post Title 1</h2>
-            <p class="blog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida libero vel metus dignissim, id laoreet enim lacinia.</p>
-            <a href="#" class="read-more">Read More</a>
-        </div>
-    </div>
-
-
-    <!-- Repeat the above card structure for additional blog post cards -->
 </div>

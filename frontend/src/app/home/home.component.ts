@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+  slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
+  blogArray: any[] = [];
 
-  constructor() { }
+
+  constructor(
+    private _blog: BlogService
+  ) { }
 
   ngOnInit(): void {
+    this.getBlogData()
+
+    this.bannerSlides()
+  }
+
+
+  bannerSlides() {
     this.slides[0] = {
       id: 0,
       src: '../../assets/Images/banners/3.png',
@@ -35,5 +47,18 @@ export class HomeComponent {
       title: 'fourth slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
+  }
+
+
+
+  getBlogData() {
+    this._blog.getBlog().subscribe({
+      next: (response: any) => {
+        this.blogArray = response.blogposts;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
   }
 }

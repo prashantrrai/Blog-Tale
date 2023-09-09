@@ -108,8 +108,12 @@ const getHandler = async (req, res) => {
 
 const updateHandler = async (req, res) => {
     try {
-        const Id = req.params.id
-        const { title, category, description, author } = req.body
+        // const { title, category, description, author } = req.body
+        const id = req.params.id
+        const title = req.body.updateblogdata.title;
+        const category = req.body.updateblogdata.category;
+        const description = req.body.updateblogdata.description;
+        const author = req.body.updateblogdata.author;
 
         if (!title || !category || !description) {
             return res.status(400).json({
@@ -125,7 +129,7 @@ const updateHandler = async (req, res) => {
             author,
         };
 
-        const updatedBlogData = await Blog.findByIdAndUpdate(Id, updatedFields, { new: true });
+        const updatedBlogData = await Blog.findByIdAndUpdate(id, updatedFields, { new: true });
         if (!updatedBlogData) {
             return res.status(404).json({
                 success: false,
@@ -151,7 +155,6 @@ const updateHandler = async (req, res) => {
 const deleteHandler = async (req, res) => {
     try {
         const Id = req.params.id
-        console.log(Id)
 
         const blogpost = await Blog.findByIdAndDelete(Id)
 
@@ -159,6 +162,7 @@ const deleteHandler = async (req, res) => {
         res.status(200).json({
             success: true,
             message: 'Blog Deleted Successfully',
+            blogpost: blogpost
         });
     } catch (error) {
         console.error(error)

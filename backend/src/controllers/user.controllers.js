@@ -88,4 +88,28 @@ const userdataHandler = async (req, res) => {
     }
 }
 
-module.exports = { registerHandler, loginHandler, userdataHandler };
+const updateHandler = async (req, res) => {
+    try {
+        // const { fname, lname, email, password, channel } = req.body
+        const id = req.body.id;
+        const fname = req.body.settingdata.fname;
+        const lname = req.body.settingdata.lname;
+        const email = req.body.settingdata.email;
+        const password = req.body.settingdata.password;
+        const channel = req.body.settingdata.channel;
+        console.log(req.body)
+
+        const updateData = await userModel.findByIdAndUpdate(id, { fname, lname, email, password, channel })
+
+        res.status(201).json({
+            success: true,
+            message: 'Account Updated successfully',
+            updateData: updateData
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ success: false, error: error.message })
+    }
+}
+
+module.exports = { registerHandler, loginHandler, userdataHandler, updateHandler };

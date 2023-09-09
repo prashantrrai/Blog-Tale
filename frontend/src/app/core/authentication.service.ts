@@ -54,4 +54,8 @@ export class AuthenticationService {
     sessionStorage.removeItem('token');
   }
 
+  updateSetting(userData: any){
+    return this.http.put<any>(`${this.serverUrl}/api/v1/users/update`, userData);
+  }
+
 }
