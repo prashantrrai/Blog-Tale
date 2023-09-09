@@ -8,7 +8,6 @@ const jwtSecretKey = process.env.MySecretkey;
 const registerHandler = async (req, res) => {
     try {
         const { fname, lname, email, password } = req.body
-        console.log(req.body)
 
         const existingUser = await userModel.findOne({ email });
         if (existingUser) {

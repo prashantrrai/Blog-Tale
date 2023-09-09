@@ -53,21 +53,21 @@
                 <button  color="primary" routerLink="dashboard/careers" mat-button><mat-icon>verified_user</mat-icon> Careers</button>
             </mat-list-item>
 
-            <mat-list-item>
+            <mat-list-item *ngIf="loggedIn">
                 <button [matMenuTriggerFor]="options"  color="primary" mat-button><mat-icon>sort</mat-icon> Blog</button>
                 <mat-menu #options="matMenu">
-                  <button  color="accent" routerLink="blog/create"   mat-menu-item><mat-icon>beenhere</mat-icon>Create Blog</button>
-                  <button routerLink="blog/update"  mat-menu-item><mat-icon>update </mat-icon>Update Blog</button>
+                  <button  color="accent" routerLink="blog/newpost"   mat-menu-item><mat-icon>description</mat-icon>New Post</button>
                   <button routerLink="blog/history"  mat-menu-item><mat-icon>history_toggle_off</mat-icon> Blog History</button>
+                  <button routerLink="blog/settings"  mat-menu-item><mat-icon>settings </mat-icon>Settings</button>
               </mat-menu>
             </mat-list-item>
 
-            <mat-list-item>
-                <button  color="primary" routerLink="auth/login" *ngIf="!loggedIn" mat-button><mat-icon>fingerprint</mat-icon> Login</button>
+            <mat-list-item *ngIf="!loggedIn">
+                <button  color="primary" routerLink="auth/login"  mat-button><mat-icon>fingerprint</mat-icon> Login</button>
             </mat-list-item>
 
-            <mat-list-item >
-                <button  color="primary" routerLink="auth/signup" *ngIf="loggedIn" (click)="onLogout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
+            <mat-list-item *ngIf="loggedIn">
+                <button  color="primary" routerLink="auth/signup"  (click)="onLogout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
             </mat-list-item>
 
         </mat-nav-list>

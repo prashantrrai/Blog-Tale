@@ -36,7 +36,7 @@ export class AuthenticationService {
       },
     }).pipe(
       tap((userData) => {
-        console.log('User data received:', userData);
+        // console.log('User data received:', userData);
       }),
       catchError((error) => {
         console.error('Error fetching user data:', error);
