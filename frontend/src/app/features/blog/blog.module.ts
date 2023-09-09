@@ -4,6 +4,7 @@ import { NewpostComponent } from './newpost/newpost.component';
 import { SettingComponent } from './setting/setting.component';
 import { HistoryComponent } from './history/history.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'newpost', component: NewpostComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
   ]
 })
 export class BlogModule { }

@@ -25,6 +25,7 @@ export class AuthenticationService {
   }
 
   setUserData(data: any) {
+    console.log(data)
     this.userData = data;
     this.userDataUpdated.emit(data);
   }

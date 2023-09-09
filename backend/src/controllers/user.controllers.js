@@ -20,7 +20,7 @@ const registerHandler = async (req, res) => {
         const registrationData = new userModel({ fname, lname, email, password })
         await registrationData.save()
 
-        const token = jwt.sign({ RegId: registrationData._id }, jwtSecretKey, { expiresIn: '1h' });
+        const token = jwt.sign({ RegId: registrationData._id }, jwtSecretKey);
 
         res.status(201).json({
             success: true,
@@ -57,7 +57,7 @@ const loginHandler = async (req, res) => {
             });
         }
 
-        const token = jwt.sign({ userId: user._id }, jwtSecretKey, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, jwtSecretKey);
 
         res.status(200).json({
             success: true,

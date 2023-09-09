@@ -9,7 +9,7 @@ const blogSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Technology', 'Science', 'Travel', 'Food', 'Other'],
+        enum: ['technology', 'science', 'travel', 'food', 'lifestyle', 'other'],
     },
     description: {
         type: String,

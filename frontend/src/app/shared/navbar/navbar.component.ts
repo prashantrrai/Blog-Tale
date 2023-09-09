@@ -23,7 +23,7 @@ export class NavbarComponent {
 
       this._auth.getUserData(token).subscribe(
         (userData) => {
-          console.log(userData)
+          // console.log(userData)
           this.userName1 = userData.userdata[0].fname;
           this.userName2 = userData.userdata[0].lname;
         },
@@ -42,8 +42,8 @@ export class NavbarComponent {
       if (userData) {
         console.log(userData)
         this.loggedIn = true;
-        this.userName1 = userData.userdata[0].fname;
-        this.userName2 = userData.userdata[0].lname;
+        this.userName1 = userData.loginData.fname;
+        this.userName2 = userData.loginData.lname;
       } else {
         this.loggedIn = false;
       }
