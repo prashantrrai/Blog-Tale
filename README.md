@@ -1,0 +1,58 @@
+# Blogging Website
+
+Welcome to the Blogging Website! This platform allows you to share your thoughts, create engaging content, and interact with your audience through a modern and user-friendly blogging experience.
+
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- Create and publish blog posts with rich text formatting.
+- User-friendly and responsive design for an optimal viewing experience.
+- User authentication and authorization for secure content management.
+- Interactive comments and engagement with readers.
+- Customizable user profiles and avatars.
+
+## Tech Stack
+
+This project is built using the following technologies:
+
+- Frontend: [Angular](https://angular.io/)
+- Backend: [Node.js](https://nodejs.org/)
+- Database: [MongoDB](https://www.mongodb.com/)
+- Authentication: [JWT](https://jwt.io/)
+
+## Installation
+
+Follow these steps to set up the project locally:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/prashantrrai/Blogging-Website.git
+   ```
+
+
+Your local development server should now be running.
+
+## Usage
+Access the frontend application at http://localhost:4200 in your browser.
+Use the registration and login features to create an account or sign in.
+Create, edit, and publish your blog posts.
+Engage with readers through comments and discussions.
+
+## Deployment
+The Blogging Website is deployed and live! You can access it at https://bloggingwebsite.onrender.com/ for a live demo.
+
+## Contributing
+Contributions are welcome! If you'd like to contribute to this project, please follow the Contribution Guidelines.
+
+## License
+This project is licensed under the MIT License.
