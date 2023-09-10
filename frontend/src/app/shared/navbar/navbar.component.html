@@ -8,6 +8,10 @@
             <div>
                 <button mat-icon-button [matMenuTriggerFor]="menu" class="large-button mx-3">
                     <span class="material-icons icon">account_circle</span>
+                    <!-- <span>
+                        <img src=http://localhost:4000/{{profile}} alt="profile">
+                    </span> -->
+
                 </button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item>
@@ -37,37 +41,44 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav opened="false" mode="side" position="start">
         <mat-nav-list>
-            <mat-list-item >
-                <button  color="primary" routerLink="" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+            <mat-list-item>
+                <button color="primary" routerLink="" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
             </mat-list-item>
 
-            <mat-list-item >
-                <button  color="primary" routerLink="dashboard/about" mat-button><mat-icon>account_circle</mat-icon> About</button>
+            <mat-list-item>
+                <button color="primary" routerLink="dashboard/about" mat-button><mat-icon>account_circle</mat-icon>
+                    About</button>
             </mat-list-item>
 
-            <mat-list-item >
-                <button  color="primary" routerLink="dashboard/contact" mat-button><mat-icon>question_answer</mat-icon> Contact</button>
+            <mat-list-item>
+                <button color="primary" routerLink="dashboard/contact" mat-button><mat-icon>question_answer</mat-icon>
+                    Contact</button>
             </mat-list-item>
 
-            <mat-list-item >
-                <button  color="primary" routerLink="dashboard/careers" mat-button><mat-icon>verified_user</mat-icon> Careers</button>
+            <mat-list-item>
+                <button color="primary" routerLink="dashboard/careers" mat-button><mat-icon>verified_user</mat-icon>
+                    Careers</button>
             </mat-list-item>
 
             <mat-list-item *ngIf="loggedIn">
-                <button [matMenuTriggerFor]="options"  color="primary" mat-button><mat-icon>sort</mat-icon> Blog</button>
+                <button [matMenuTriggerFor]="options" color="primary" mat-button><mat-icon>sort</mat-icon> Blog</button>
                 <mat-menu #options="matMenu">
-                  <button  color="accent" routerLink="blog/newpost"   mat-menu-item><mat-icon>description</mat-icon>New Post</button>
-                  <button routerLink="blog/history"  mat-menu-item><mat-icon>history_toggle_off</mat-icon> Blog History</button>
-                  <button routerLink="blog/settings"  mat-menu-item><mat-icon>settings </mat-icon>Settings</button>
-              </mat-menu>
+                    <button color="accent" routerLink="blog/newpost" mat-menu-item><mat-icon>description</mat-icon>New
+                        Post</button>
+                    <button routerLink="blog/history" mat-menu-item><mat-icon>history_toggle_off</mat-icon> Blog
+                        History</button>
+                    <button routerLink="blog/settings" mat-menu-item><mat-icon>settings </mat-icon>Settings</button>
+                </mat-menu>
             </mat-list-item>
 
             <mat-list-item *ngIf="!loggedIn">
-                <button  color="primary" routerLink="auth/login"  mat-button><mat-icon>fingerprint</mat-icon> Login</button>
+                <button color="primary" routerLink="auth/login" mat-button><mat-icon>fingerprint</mat-icon>
+                    Login</button>
             </mat-list-item>
 
             <mat-list-item *ngIf="loggedIn">
-                <button  color="primary" routerLink="auth/signup"  (click)="onLogout()" mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
+                <button color="primary" routerLink="auth/signup" (click)="onLogout()"
+                    mat-button><mat-icon>power_settings_new</mat-icon> Logout</button>
             </mat-list-item>
 
         </mat-nav-list>

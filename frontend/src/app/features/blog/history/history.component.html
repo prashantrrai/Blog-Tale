@@ -3,13 +3,14 @@
     <div class="blogcard" *ngFor="let item of blogArray">
         <div class="blog-content">
             <div class="image">
-                <img src="../../../../assets/Images/blog posts/wildlife.jpg" alt="Blog Image">
+                <img src="http://localhost:4000/{{item.blogImage}}" alt="Blog Image">
             </div>
             <div class="content">
                 <div>
                     <h2>{{item.title}}</h2>
                     <p class="category">Category: {{item.category}}</p>
                     <p class="description">{{item.description}}</p>
+                    <p class="author">Author: {{item.author}}</p>
                 </div>
   
             </div>

@@ -22,12 +22,12 @@
 
 <div class="blog-cards-container">
     <div class="blog-card" *ngFor="let blog of blogArray">
-        <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1">
-        <!-- <img class="card-img-top" src="{{country.flagImage}}" alt="Card image cap" style="width: 200px; height: 300px;" /> -->
+        <!-- <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1"> -->
+        <img src="http://localhost:4000/{{blog.blogImage}}" alt="blog_profile"/>
         <div class="blog-content">
             <h2 class="blog-title">{{blog.title}}</h2>
             <p class="blog-description">{{blog.description}}</p>
-            <a href="#" class="read-more" routerLink="auth/login">Read More</a>
+            <a href="#" class="read-more" routerLink="blog/history">Read More</a>
         </div>
     </div>
 </div>

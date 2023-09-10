@@ -33,7 +33,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        default: "Anonymous"
     },
+    profile: {
+        type: String,
+        default: "default-profile.png"
+      },
+
     createdAt: {
         type: Date,
         default: Date.now,

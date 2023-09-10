@@ -55,6 +55,7 @@ export class HomeComponent {
     this._blog.getBlog().subscribe({
       next: (response: any) => {
         this.blogArray = response.blogposts;
+        console.log(response)
       },
       error: (error: any) => {
         console.log(error);

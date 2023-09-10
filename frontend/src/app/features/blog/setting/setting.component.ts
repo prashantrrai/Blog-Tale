@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/core/authentication.service';
 export class SettingComponent {
   settingForm!: FormGroup
   id: any;
+  file: any;
 
   constructor(
     private _auth: AuthenticationService,
@@ -32,6 +33,7 @@ export class SettingComponent {
       email: ["", [Validators.required]],
       password: ["", [Validators.required]],
       channel: ["", [Validators.required]],
+      // profile: [""],
     });
   }
 
@@ -52,6 +54,7 @@ export class SettingComponent {
             email: response.userdata[0].email,
             password: response.userdata[0].password,
             channel: response.userdata[0].channel,
+            // profile: response.userdata[0].profile,
           });
         },
         error: (error: any) => {
@@ -61,9 +64,23 @@ export class SettingComponent {
     }
   }
 
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+    console.log(this.file);
+  }
+
   //---------------------UPDATE SETTING DATA----------------------//
   onSubmit() {
-    // console.log(this.settingForm.value)
+    console.log(this.settingForm.value)
+
+    // var FORMDATA = new FormData();
+    // FORMDATA.append("fname", this.settingForm.value.fname);
+    // FORMDATA.append("lname", this.settingForm.value.lname);
+    // FORMDATA.append("email", this.settingForm.value.email);
+    // FORMDATA.append("password", this.settingForm.value.password);
+    // FORMDATA.append("channel", this.settingForm.value.channel);
+    // FORMDATA.append("profile", this.file);
+
     const formData = {
       settingdata: this.settingForm.value,
       id: this.id
@@ -77,7 +94,7 @@ export class SettingComponent {
 
           // this.settingdata = response
           this.toastr.success(response.message);
-          // this.getsettingData()
+          this.getsettingData()
         },
         error: (error: any) => {
           console.log(error);

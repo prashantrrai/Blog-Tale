@@ -63,7 +63,10 @@ h2 {
     font-size: 16px;
     color: #666;
 }
-
+.author {
+    font-size: 12px;
+    color: #acacac;
+}
 .description {
     font-size: 18px;
     margin-top: 10px;

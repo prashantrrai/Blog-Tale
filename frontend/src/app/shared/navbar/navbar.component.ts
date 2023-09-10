@@ -13,6 +13,7 @@ export class NavbarComponent {
   userName2: string='';
   userName3: string='';
   loggedIn: boolean = true;
+  profile: any;
   constructor(private router: Router, private toastr: ToastrService, public _auth: AuthenticationService) {}
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class NavbarComponent {
 
       this._auth.getUserData(token).subscribe(
         (userData) => {
-          // console.log(userData)
+          // this.profile = userData.userdata[0].profile;
           this.userName1 = userData.userdata[0].fname;
           this.userName2 = userData.userdata[0].lname;
         },

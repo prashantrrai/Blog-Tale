@@ -11,7 +11,7 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  createBlog(blogData: any, headers: any): Observable<any> {
+  createBlog(blogData: any): Observable<any> {
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -28,14 +28,15 @@ export class BlogService {
     return this.http.get<any>(`${this.serverUrl}/api/v1/blog/read`);
   }
 
-  updateBlog(updateData: any): Observable<any> {
+  updateBlog(updateData: any, id: any): Observable<any> {
+    console.log(id)
     const token = localStorage.getItem('token');
 
     if (token) {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-      return this.http.put<any>(`${this.serverUrl}/api/v1/blog/update/${updateData.id}`, updateData, { headers });
+      return this.http.put<any>(`${this.serverUrl}/api/v1/blog/update/${id}`, updateData, { headers });
     } else {
       return throwError('Token is missing. Please log in.');
     }

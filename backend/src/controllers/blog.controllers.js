@@ -1,20 +1,22 @@
 const Blog = require('../models/blog.models')
+const { upload } = require('../middlewares/multer.config')
+const multer = require('multer');
 
-
-
-const createHandler = async (req, res) => {
+const createHandler =  async (req, res) => {
     try {
+        console.log(req.body)
         const { title, category, description, author } = req.body
+        let blogData;
 
-        if (!title || !category || !description) {
-            return res.status(400).json({
-                success: false,
-                message: 'Please provide all required fields: title, category, description',
-            });
+        if(!req.file){
+            blogData = new Blog({ title, category, description, author })
+            await blogData.save()
+        }
+        else{
+            blogData = new Blog({ title, category, description, author, blogImage: req.file.filename })
+            await blogData.save()
         }
 
-        const blogData = new Blog({ title, category, description, author })
-        await blogData.save()
 
         res.status(201).json({
             success: true,
@@ -108,28 +110,21 @@ const getHandler = async (req, res) => {
 
 const updateHandler = async (req, res) => {
     try {
-        // const { title, category, description, author } = req.body
         const id = req.params.id
-        const title = req.body.updateblogdata.title;
-        const category = req.body.updateblogdata.category;
-        const description = req.body.updateblogdata.description;
-        const author = req.body.updateblogdata.author;
+        const title = req.body.title;
+        const category = req.body.category;
+        const description = req.body.description;
+        const author = req.body.author;
 
-        if (!title || !category || !description) {
-            return res.status(400).json({
-                success: false,
-                message: 'Please provide all required fields: title, category, description',
-            });
+        let updatedBlogData;
+
+        if(!req.file){
+            updatedBlogData = await Blog.findByIdAndUpdate(id, {title, category, description, author}, { new: true });
+        }
+        else{
+            updatedBlogData = await Blog.findByIdAndUpdate(id, {title, category, description, author,  blogImage: req.file.filename}, { new: true });
         }
 
-        const updatedFields = {
-            title,
-            category,
-            description,
-            author,
-        };
-
-        const updatedBlogData = await Blog.findByIdAndUpdate(id, updatedFields, { new: true });
         if (!updatedBlogData) {
             return res.status(404).json({
                 success: false,

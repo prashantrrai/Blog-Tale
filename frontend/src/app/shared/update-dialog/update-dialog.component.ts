@@ -14,6 +14,7 @@ export class UpdateDialogComponent implements OnInit {
   closingdata = ''
   updateForm!: FormGroup
   id: any;
+  file: any;
 
 
   constructor(
@@ -25,7 +26,7 @@ export class UpdateDialogComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.inputdata = this.data
-    // console.log(this.inputdata)
+    console.log(this.inputdata)
     this.id = this.inputdata.blogdata._id
 
     this.initializeForm()
@@ -34,6 +35,7 @@ export class UpdateDialogComponent implements OnInit {
       category: this.inputdata.blogdata.category,
       description: this.inputdata.blogdata.description,
       author: this.inputdata.blogdata.author,
+      blogImage: this.inputdata.blogdata.blogImage
     });
   }
 
@@ -43,19 +45,31 @@ export class UpdateDialogComponent implements OnInit {
       category: ["", [Validators.required]],
       description: ["", [Validators.required]],
       author: ["", [Validators.required]],
+      blogImage: [""]
     });
   }
 
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+    console.log(this.file);
+  }
+  
   onSubmit() {
-    // console.log(this.updateForm.value)
-    const formData = {
-      updateblogdata: this.updateForm.value,
+    console.log(this.updateForm.value)
       id: this.id
-    };
+
+
+    var FORMDATA = new FormData();
+    FORMDATA.append("title", this.updateForm.value.title);
+    FORMDATA.append("category", this.updateForm.value.category);
+    FORMDATA.append("description", this.updateForm.value.description);
+    FORMDATA.append("author", this.updateForm.value.author);
+    FORMDATA.append("blogImage", this.file);
+
 
     if (this.updateForm.valid) {
 
-      this._blog.updateBlog(formData).subscribe({
+      this._blog.updateBlog(FORMDATA, this.id).subscribe({
         next: (response: any) => {
           this.closingdata = response.blogData
           this.ref.close(this.closingdata)

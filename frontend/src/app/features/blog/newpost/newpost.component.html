@@ -1,7 +1,7 @@
 <div class="post-container">
     <div class="container">
         <h1>Create a Blog Post</h1>
-        <form [formGroup]="newpostForm" (ngSubmit)="onPublish()">
+        <form [formGroup]="newpostForm" (ngSubmit)="onPublish()" enctype="multipart/form-data" >
             <input type="text" placeholder="Title" formControlName="title">
             <select formControlName="category">
                 <option value="" disabled selected>Select Category</option>
@@ -13,8 +13,9 @@
                 <option value="other">Other</option>
             </select>
             <textarea placeholder="Description" rows="6" formControlName="description"></textarea>
-            <input type="text" placeholder="Author Name (Optional)" formControlName="author">
-            <button type="submit">Publish</button>
-        </form>
+            <input type="text" placeholder="Author Name" formControlName="author">
+            <input type="file" class="form-control text-start" name="blogImage" formControlName="blogImage" (change)="onFileSelected($event)">
+            <button class="mt-5" type="submit">Publish</button>
+        </form> 
     </div>
 </div>

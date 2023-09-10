@@ -64,7 +64,6 @@ export class HistoryComponent {
 
     _popup.afterClosed().subscribe(items => {
       console.log(items)
-
       this.getBlogData()
     })
   }

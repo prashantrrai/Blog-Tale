@@ -3,7 +3,28 @@ const userModel = require('../models/user.models')
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
 const jwtSecretKey = process.env.MySecretkey;
+const { upload } = require('../middlewares/multer.config')
+const multer = require('multer');
 
+const uploadHandler =  async (req, res, next) => {
+    upload.single("profile")(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        if (err.code === "LIMIT_FILE_SIZE") {
+          return res.status(400).json({
+            success: false,
+            message: "File size exceeds the limit (2MB).",
+          });
+        }
+        return res.status(400).json({
+          success: false,
+          message: "Unexpected error while uploading the file.",
+        });
+      } else if (err) {
+        return res.status(400).json({ success: false, message: err.message });
+      }
+      next();
+    });
+  }
 
 const registerHandler = async (req, res) => {
     try {
@@ -17,7 +38,9 @@ const registerHandler = async (req, res) => {
             });
         }
 
-        const registrationData = new userModel({ fname, lname, email, password })
+        // const profile = req.file ? req.file.filename : 'default-profile.png';
+
+        const registrationData = new userModel({ fname, lname, email, password})
         await registrationData.save()
 
         const token = jwt.sign({ RegId: registrationData._id }, jwtSecretKey);
@@ -97,9 +120,12 @@ const updateHandler = async (req, res) => {
         const email = req.body.settingdata.email;
         const password = req.body.settingdata.password;
         const channel = req.body.settingdata.channel;
+        const profile = req.body.settingdata.profile;
         console.log(req.body)
 
-        const updateData = await userModel.findByIdAndUpdate(id, { fname, lname, email, password, channel })
+        // const profile = req.file ? req.file.filename : 'default-profile.png';
+
+        const updateData = await userModel.findByIdAndUpdate(id, { fname, lname, email, password, channel, profile })
 
         res.status(201).json({
             success: true,
@@ -112,4 +138,4 @@ const updateHandler = async (req, res) => {
     }
 }
 
-module.exports = { registerHandler, loginHandler, userdataHandler, updateHandler };
+module.exports = { uploadHandler, registerHandler, loginHandler, userdataHandler, updateHandler };

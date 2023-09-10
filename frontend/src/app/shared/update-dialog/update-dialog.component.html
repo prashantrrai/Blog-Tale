@@ -14,7 +14,9 @@
                 </select>
                 <textarea placeholder="Description" rows="3" formControlName="description"></textarea>
                 <input type="text" placeholder="Author Name" formControlName="author">
-                <button type="submit" mat-raised-button color="accent" >Update</button>
+                <input type="file" class="form-control text-start" name="blogImage" formControlName="blogImage" (change)="onFileSelected($event)">
+
+                <button class="mt-3" type="submit" mat-raised-button color="accent" >Update</button>
             </form>
         </div>
     </div>
