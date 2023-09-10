@@ -11,10 +11,10 @@ app.use(express.static('Public/Uploads'))
 const img_path = path.join(__dirname, "src/Public/Uploads");
 app.use(express.static(img_path));
 
-const profile_path = path.join(__dirname, "/Public");
-app.use(express.static(profile_path));
+app.use(express.static("frontend"));
 
-app.use(express.json({ limit: "16kb" }));
+// app.use(express.json({ limit: "16kb" }));
+app.use(express.json());
 // app.use(express.urlencoded({ extended: false, limit: "1024kb" }));
 app.use(express.urlencoded({ extended: false}));
 
@@ -24,8 +24,8 @@ const blogRouter = require("./src/routes/blog.routes")
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/blog",blogRouter)
 
-app.get('/', (req, res) => {
-    res.send("Hello WOrld");
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 

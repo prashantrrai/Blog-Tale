@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
@@ -9,7 +10,10 @@ export class BlogService {
 
   private serverUrl = 'http://localhost:4000';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    ) { }
 
   createBlog(blogData: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -29,7 +33,6 @@ export class BlogService {
   }
 
   updateBlog(updateData: any, id: any): Observable<any> {
-    console.log(id)
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -38,12 +41,14 @@ export class BlogService {
       });
       return this.http.put<any>(`${this.serverUrl}/api/v1/blog/update/${id}`, updateData, { headers });
     } else {
-      return throwError('Token is missing. Please log in.');
+      const errorMessage = 'Token is missing. Please log in.';
+      this.toastr.warning(errorMessage);
+      return throwError(errorMessage);
+      
     }
   }
 
   deleteBlog(id: any): Observable<any> {
-    console.log(id)
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -52,7 +57,9 @@ export class BlogService {
       });
       return this.http.delete<any>(`${this.serverUrl}/api/v1/blog/delete/${id}`, { headers });
     } else {
-      return throwError('Token is missing. Please log in.');
+      const errorMessage = 'Token is missing. Please log in.';
+      this.toastr.warning(errorMessage);
+      return throwError(errorMessage);
     }
   }
 }

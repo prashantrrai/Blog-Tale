@@ -38,7 +38,6 @@ export class HistoryComponent {
 
   deleteBlog(item: any){
     const id= item
-      console.log(id)
       this._blog.deleteBlog(id).subscribe({
         next: (response: any) => {
           console.log(response);
