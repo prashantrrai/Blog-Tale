@@ -37,6 +37,21 @@ Follow these steps to set up the project locally:
 
    ```bash
    git clone https://github.com/prashantrrai/Blogging-Website.git
+
+   cd Blogging-Website
+
+    cd frontend
+    npm install
+
+    cd ../backend
+    npm install
+
+    cd ../frontend
+    ng serve
+
+    cd ../backend
+    node index.js
+
    ```
 
 
