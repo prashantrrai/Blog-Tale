@@ -1,16 +1,16 @@
 {
-    "name": "blogging website",
-    "version": 1,
+    "name": "blogging_website",
+    "version": 2,
     "builds": [
       {
-        "src": "index.js",
+        "src": "./index.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
-        "src": "*/(.*)",
-        "dest": "/"
+        "src": "/(.*)",
+        "dest": "/frontend/index.html"
       }
     ]
   }
