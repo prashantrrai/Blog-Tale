@@ -23,7 +23,8 @@
 <div class="blog-cards-container">
     <div class="blog-card" *ngFor="let blog of blogArray">
         <!-- <img src="../../assets/Images/blog posts/sports1.jpg" alt="Blog Image 1"> -->
-        <img src="http://localhost:4000/{{blog.blogImage}}" alt="blog_profile"/>
+        <!-- <img src="http://localhost:4000/{{blog.blogImage}}" alt="blog_profile"/> -->
+        <img src="https://bloggingbackend-qh6a.onrender.com/{{blog.blogImage}}" alt="blog_profile"/>
         <div class="blog-content">
             <h2 class="blog-title">{{blog.title}}</h2>
             <p class="blog-description">{{blog.description}}</p>

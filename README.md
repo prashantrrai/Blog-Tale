@@ -40,17 +40,17 @@ Follow these steps to set up the project locally:
 
    cd Blogging-Website
 
-    cd frontend
-    npm install
+   cd frontend
+   npm install
 
-    cd ../backend
-    npm install
+   cd ../backend
+   npm install
 
-    cd ../frontend
-    ng serve
+   cd ../frontend
+   ng serve
 
-    cd ../backend
-    node index.js
+   cd ../backend
+   node index.js
 
    ```
 
@@ -64,7 +64,7 @@ Create, edit, and publish your blog posts.
 Engage with readers through comments and discussions.
 
 ## Deployment
-The Blogging Website is deployed and live! You can access it at https://bloggingwebsite.onrender.com/ for a live demo.
+The Blogging Website is deployed and live! You can access it at https://blogtale.netlify.app for a live demo.
 
 ## Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow the Contribution Guidelines.

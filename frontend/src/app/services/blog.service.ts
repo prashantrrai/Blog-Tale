@@ -8,7 +8,8 @@ import { Observable, throwError } from 'rxjs';
 })
 export class BlogService {
 
-  private serverUrl = 'http://localhost:4000';
+  // private serverUrl = 'http://localhost:4000';
+  private serverUrl = 'https://bloggingbackend-qh6a.onrender.com';
 
   constructor(
     private http: HttpClient,
