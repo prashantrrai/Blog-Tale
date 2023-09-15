@@ -31,20 +31,14 @@ export class HomeComponent {
     };
     this.slides[1] = {
       id: 1,
-      src: '../../assets/Images/banners/2.png',
+      src: '../../assets/Images/banners/1.png',
       title: 'Second slide',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
     this.slides[2] = {
       id: 2,
-      src: '../../assets/Images/banners/1.png',
-      title: 'Third slide',
-      subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-    }
-    this.slides[3] = {
-      id: 3,
       src: '../../assets/Images/banners/4.png',
-      title: 'fourth slide',
+      title: 'Third slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
   }
