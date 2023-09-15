@@ -11,7 +11,7 @@ app.use(express.static('Public/Uploads'))
 const img_path = path.join(__dirname, "src/Public/Uploads");
 app.use(express.static(img_path));
 
-app.use(express.static("frontend"));
+// app.use(express.static("frontend"));
 
 // app.use(express.json({ limit: "16kb" }));
 app.use(express.json());
@@ -24,8 +24,9 @@ const blogRouter = require("./src/routes/blog.routes")
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/blog",blogRouter)
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+app.get('/', (req, res) => {
+    // res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+    res.json({success: true, message: "hello world"})
 });
 
 

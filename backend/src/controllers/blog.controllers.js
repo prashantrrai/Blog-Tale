@@ -1,10 +1,9 @@
 const Blog = require('../models/blog.models')
-const { upload } = require('../middlewares/multer.config')
-const multer = require('multer');
+// const { upload } = require('../middlewares/multer.config')
+// const multer = require('multer');
 
 const createHandler =  async (req, res) => {
     try {
-        console.log(req.body)
         const { title, category, description, author } = req.body
         let blogData;
 
