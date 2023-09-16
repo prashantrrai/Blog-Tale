@@ -8,9 +8,7 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class BlogService {
-
-  // private serverUrl = 'http://localhost:4000';
-  // private serverUrl = 'https://bloggingbackend-qh6a.onrender.com';
+  
   private apiUrl = environment.apiUrl
 
   constructor(

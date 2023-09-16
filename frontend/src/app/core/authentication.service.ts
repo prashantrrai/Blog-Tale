@@ -9,8 +9,6 @@ export class AuthenticationService {
     loggedIn = false;
     userData: any;
     userDataUpdated = new EventEmitter<any>();
-    // private serverUrl = 'http://localhost:4000';
-    // private serverUrl = 'https://bloggingbackend-qh6a.onrender.com';
     private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
