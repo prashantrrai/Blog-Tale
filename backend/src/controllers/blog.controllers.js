@@ -1,20 +1,22 @@
 const Blog = require('../models/blog.models')
-// const { upload } = require('../middlewares/multer.config')
-// const multer = require('multer');
+
+
 
 const createHandler =  async (req, res) => {
     try {
         const { title, category, description, author } = req.body
-        let blogData;
 
-        if(!req.file){
-            blogData = new Blog({ title, category, description, author })
-            await blogData.save()
-        }
-        else{
-            blogData = new Blog({ title, category, description, author, blogImage: req.file.filename })
-            await blogData.save()
-        }
+        // if(!req.file){
+        //     blogData = new Blog({ title, category, description, author })
+        //     await blogData.save()
+        // }else{
+        //     blogData = new Blog({ title, category, description, author, blogImage: req.file.filename })
+        //     await blogData.save()
+        // }
+
+        const blogData = (!req.file) ? await Blog.create({ title, category, description, author }) : await Blog.create({ title, category, description, author })
+        // await blogData.save()
+        // await Blog.create({ title, category, description, author });
 
 
         res.status(201).json({
@@ -24,14 +26,6 @@ const createHandler =  async (req, res) => {
         });
     } catch (error) {
         console.error(error)
-
-        if (error.name === 'ValidationError') {
-            return res.status(400).json({
-                success: false,
-                message: 'Error Validation',
-                error: error.message,
-            });
-        }
 
         res.status(500).json({
             success: false,
@@ -43,63 +37,66 @@ const createHandler =  async (req, res) => {
 
 const getHandler = async (req, res) => {
     try {
-        const {
-            page = 1,
-            limit = 10,
-            sortField = 'createdAt',
-            sortOrder = 'desc',
-            search = '',
-            startDate = '',
-            endDate = '',
-            author = '',
-            category = '',
-        } = req.query;
+        // const {
+        //     page = 1,
+        //     limit = 10,
+        //     sortField = 'createdAt',
+        //     sortOrder = 'desc',
+        //     search = '',
+        //     startDate = '',
+        //     endDate = '',
+        //     author = '',
+        //     category = '',
+        // } = req.query;
 
-        const pageNumber = parseInt(page);
-        const limitNumber = parseInt(limit);
+        // const pageNumber = parseInt(page);
+        // const limitNumber = parseInt(limit);
 
-        if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
-            return res.status(400).json({
-                success: false,
-                message: 'Invalid pagination parameters',
-            });
-        }
+        // if (isNaN(pageNumber) || isNaN(limitNumber) || pageNumber < 1 || limitNumber < 1) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: 'Invalid pagination parameters',
+        //     });
+        // }
 
-        const filter = {};
+        // const filter = {};
 
-        if (search) {
-            filter.$text = { $search: search };
-        }
+        // if (search) {
+        //     filter.$text = { $search: search };
+        // }
 
-        if (startDate || endDate) {
-            filter.createdAt = {};
-            if (startDate) {
-                filter.createdAt.$gte = new Date(startDate);
-            }
-            if (endDate) {
-                filter.createdAt.$lte = new Date(endDate);
-            }
-        }
+        // if (startDate || endDate) {
+        //     filter.createdAt = {};
+        //     if (startDate) {
+        //         filter.createdAt.$gte = new Date(startDate);
+        //     }
+        //     if (endDate) {
+        //         filter.createdAt.$lte = new Date(endDate);
+        //     }
+        // }
 
-        if (author) {
-            filter.author = author;
-        }
+        // if (author) {
+        //     filter.author = author;
+        // }
 
-        if (category) {
-            filter.category = category;
-        }
+        // if (category) {
+        //     filter.category = category;
+        // }
 
-        const query = Blog.find(filter)
-            .skip((pageNumber - 1) * limitNumber)
-            .limit(limitNumber)
-            .sort({ [sortField]: sortOrder });
+        // const query = Blog.find(filter)
+        //     .skip((pageNumber - 1) * limitNumber)
+        //     .limit(limitNumber)
+        //     .sort({ [sortField]: sortOrder });
 
-        const blogposts = await query.exec();
+        // const blogposts = await query.exec();
+
+
+        const blogposts = await Blog.find().sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
             message: 'Blog posts retrieved successfully',
-            blogposts,
+            blogposts: blogposts,
         });
     } catch (error) {
         console.error(error)
@@ -115,14 +112,7 @@ const updateHandler = async (req, res) => {
         const description = req.body.description;
         const author = req.body.author;
 
-        let updatedBlogData;
-
-        if(!req.file){
-            updatedBlogData = await Blog.findByIdAndUpdate(id, {title, category, description, author}, { new: true });
-        }
-        else{
-            updatedBlogData = await Blog.findByIdAndUpdate(id, {title, category, description, author,  blogImage: req.file.filename}, { new: true });
-        }
+        const updatedBlogData = (!req.file) ? await Blog.findByIdAndUpdate(id, {title, category, description, author}, { new: true }) : await Blog.findByIdAndUpdate(id, {title, category, description, author,  blogImage: req.file.filename}, { new: true })
 
         if (!updatedBlogData) {
             return res.status(404).json({
@@ -149,9 +139,7 @@ const updateHandler = async (req, res) => {
 const deleteHandler = async (req, res) => {
     try {
         const Id = req.params.id
-
         const blogpost = await Blog.findByIdAndDelete(Id)
-
 
         res.status(200).json({
             success: true,

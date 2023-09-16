@@ -4,7 +4,7 @@
         <div class="blog-content">
             <div class="image">
                 <!-- <img src="http://localhost:4000/{{item.blogImage}}" alt="Blog Image"> -->
-                <img src="https://bloggingbackend-qh6a.onrender.com/{{item.blogImage}}" alt="Blog Image">
+                <img id="blog_image" [src]="apiUrl + '/' + item.blogImage" alt="blog_image" />
             </div>
             <div class="content">
                 <div>
@@ -26,7 +26,7 @@
                     <button routerLink="/" class="view"><i class="fas fa-eye"></i> </button>
                 </div>
                 <div>
-                    <button class="share"><i class="fas fa-share"></i> </button>
+                    <button class="share" (click)="shareOnWhatsApp(item._id)"><i class="fas fa-share"></i> </button>
                 </div>
             </div>
         </div>

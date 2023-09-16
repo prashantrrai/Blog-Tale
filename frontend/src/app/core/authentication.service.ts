@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,19 +10,20 @@ export class AuthenticationService {
     userData: any;
     userDataUpdated = new EventEmitter<any>();
     // private serverUrl = 'http://localhost:4000';
-    private serverUrl = 'https://bloggingbackend-qh6a.onrender.com';
+    // private serverUrl = 'https://bloggingbackend-qh6a.onrender.com';
+    private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
 
   registerUser(userData: any): Observable<any> {
     console.log(userData);
-    return this.http.post<any>(`${this.serverUrl}/api/v1/users/register`, userData);
+    return this.http.post<any>(`${this.apiUrl}/api/v1/users/register`, userData);
   }
 
   loginUser(loginData: any): Observable<any> {
     console.log(loginData);
-    return this.http.post<any>(`${this.serverUrl}/api/v1/users/login`, loginData);
+    return this.http.post<any>(`${this.apiUrl}/api/v1/users/login`, loginData);
   }
 
   setUserData(data: any) {
@@ -32,7 +33,7 @@ export class AuthenticationService {
   }
 
   getUserData(token: string): Observable<any> {
-    return this.http.get(`${this.serverUrl}/api/v1/users/userdata`, {
+    return this.http.get(`${this.apiUrl}/api/v1/users/userdata`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -56,7 +57,7 @@ export class AuthenticationService {
   }
 
   updateSetting(userData: any){
-    return this.http.put<any>(`${this.serverUrl}/api/v1/users/update`, userData);
+    return this.http.put<any>(`${this.apiUrl}/api/v1/users/update`, userData);
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogService } from '../services/blog.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { BlogService } from '../services/blog.service';
 export class HomeComponent {
   slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
   blogArray: any[] = [];
-
+  public apiUrl = environment.apiUrl;
 
   constructor(
     private _blog: BlogService
@@ -20,6 +21,10 @@ export class HomeComponent {
 
     this.bannerSlides()
   }
+
+  // get apiUrl(): string {
+  //   return environment.apiUrl;
+  // }
 
 
   bannerSlides() {

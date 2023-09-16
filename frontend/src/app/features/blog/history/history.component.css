@@ -21,7 +21,9 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    max-width: 200px;
+    margin: 0 auto; 
+    overflow: hidden;
 }
 .image img {
     max-width: 100%; 
