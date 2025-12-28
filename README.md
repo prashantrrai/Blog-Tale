@@ -63,8 +63,6 @@ Use the registration and login features to create an account or sign in.
 Create, edit, and publish your blog posts.
 Engage with readers through comments and discussions.
 
-## Deployment
-The Blogging Website is deployed and live! You can access it at https://blogtale.netlify.app for a live demo.
 
 ## Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow the Contribution Guidelines.
